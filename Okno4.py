@@ -30,6 +30,7 @@ class Ui_PrzypominaczI(object):
 
     def __init__(self):
         self.listaWatki = []
+        self.listaTytuly = []
 
     def setupUi(self, PrzypominaczI):
 
@@ -99,7 +100,8 @@ class Ui_PrzypominaczI(object):
         # for x in range(licz):
         # 	n = n + 1
         # print self.pozycja
-        QListWidgetItem(self.tytul.text(),self.listaPrzyp)
+        self.pozycja = QListWidgetItem(self.tytul.text(),self.listaPrzyp)
+        return self.pozycja
 
     # def zebTyt(self):
         # watek.tytul = self.tytul.text()
@@ -114,7 +116,10 @@ class Ui_PrzypominaczI(object):
         watek.pobranaGodzina = self.godzina.time().toString("hh:mm")
         watek.start()
         self.listaWatki.append(watek)
+        watek.sygnal.connect(ui.pozycjaTytul)
+        self.listaTytuly.append(self.pozycja)
         watek.sygnal.connect(ui.okienko)
+
         # watek.sygnal2.connect(ui.zebTyt)
         # watek.sygnal2.connect(ui.pozycjaTytul)
         # print index
