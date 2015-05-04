@@ -15,7 +15,7 @@ try:
 except AttributeError:
     def _fromUtf8(s):
         return s
-#gfgdugh duig hdui ghuidfh guisdhguidguidhguidhgiu dfhui
+
 try:
     _encoding = QApplication.UnicodeUTF8
     def _translate(context, text, disambig):
