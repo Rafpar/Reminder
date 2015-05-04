@@ -18,17 +18,18 @@ except AttributeError:
 
 try:
     _encoding = QApplication.UnicodeUTF8
+
     def _translate(context, text, disambig):
         return QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QApplication.translate(context, text, disambig)
 
+
 class Ui_PrzypominaczI(object):
 
     def __init__(self):
         self.listaWatki = []
-
 
     def setupUi(self, PrzypominaczI):
 
@@ -78,9 +79,6 @@ class Ui_PrzypominaczI(object):
         self.retranslateUi(PrzypominaczI)
         QMetaObject.connectSlotsByName(PrzypominaczI)
 
-
-
-
     def retranslateUi(self, PrzypominaczI):
         PrzypominaczI.setWindowTitle(_translate("PrzypominaczI", "Dialog", None))
         self.labelP.setText(_translate("PrzypominaczI", "Lista przypomnień", None))
@@ -90,70 +88,63 @@ class Ui_PrzypominaczI(object):
         self.label.setText(_translate("PrzypominaczI", "Wprowadź tekst przypomnienia:", None))
         self.startPrzyp.setText(_translate("PrzypominaczI", "Ustaw Przypomnienie", None))
         self.label_2.setText(_translate("PrzypominaczI", "Podaj godzinę:", None))
-    
-    
-    
 
     def pozycjaTytul(self):
 
-        #lista = []
-        #self.pozycja = self.zebTyt()#tytul.text()
-        #lista.append(self.pozycja)
-        #licz = len(lista)
-        #n = -1
-        #for x in range(licz):
-        #	n = n + 1
-        #print self.pozycja
+        # lista = []
+        # self.pozycja = self.zebTyt()#tytul.text()
+        # lista.append(self.pozycja)
+        # licz = len(lista)
+        # n = -1
+        # for x in range(licz):
+        # 	n = n + 1
+        # print self.pozycja
         QListWidgetItem(self.tytul.text(),self.listaPrzyp)
 
-    #def zebTyt(self):
-        #watek.tytul = self.tytul.text()
-        #return watek.tytul
+    # def zebTyt(self):
+        # watek.tytul = self.tytul.text()
+        # return watek.tytul
     
     def startWatek(self):
-
 
         index = len(self.listaWatki)
         watek = Watek(index)
 
         watek.pobranaData = self.kalendarz.selectedDate().toString("yyyy-MM-dd")
         watek.pobranaGodzina = self.godzina.time().toString("hh:mm")
-
-
         watek.start()
         self.listaWatki.append(watek)
         watek.sygnal.connect(ui.okienko)
-        #watek.sygnal2.connect(ui.zebTyt)
-        #watek.sygnal2.connect(ui.pozycjaTytul)
-        #print index
+        # watek.sygnal2.connect(ui.zebTyt)
+        # watek.sygnal2.connect(ui.pozycjaTytul)
+        # print index
 
     def okienko(self):
         komunikat = self.trescPrzyp.toPlainText()
         QMessageBox.information(QWidget(),'Przypomnienie',komunikat, QMessageBox.Ok)
 
+
 class Watek(QThread):
     sygnal2 = pyqtSignal()
     sygnal = pyqtSignal()
-
 
     def __init__(self,index):
         super(Watek, self).__init__()
         self.index = index
         self.pobranaData = None
         self.pobranaGodzina = None
-        #self.tytul = None
-
+        # self.tytul = None
 
     def run(self):
 
-        #self.sygnal2.emit()
-        #while self.tytul is None:
+        # self.sygnal2.emit()
+        # while self.tytul is None:
 
-            #continue
-
+            # continue
 
         silnik(self.pobranaData,self.pobranaGodzina)
         self.sygnal.emit()
+
 
 def silnik(pobranaData,pobranaGodzina):
 
@@ -170,10 +161,6 @@ def silnik(pobranaData,pobranaGodzina):
 if __name__ == "__main__":
     import sys
     app = QApplication(sys.argv)
-    
-   
-    
-    
     PrzypominaczI = QDialog()
     ui = Ui_PrzypominaczI()
     ui.setupUi(PrzypominaczI)
