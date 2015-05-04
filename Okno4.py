@@ -30,7 +30,7 @@ class Ui_PrzypominaczI(object):
 
     def __init__(self):
         self.listaWatki = []
-        self.listaTytuly = []
+        # self.listaTytuly = []
 
     def setupUi(self, PrzypominaczI):
 
@@ -90,7 +90,7 @@ class Ui_PrzypominaczI(object):
         self.startPrzyp.setText(_translate("PrzypominaczI", "Ustaw Przypomnienie", None))
         self.label_2.setText(_translate("PrzypominaczI", "Podaj godzinę:", None))
 
-    def pozycjaTytul(self):
+    # def pozycjaTytul(self):
 
         # lista = []
         # self.pozycja = self.zebTyt()#tytul.text()
@@ -100,8 +100,8 @@ class Ui_PrzypominaczI(object):
         # for x in range(licz):
         # 	n = n + 1
         # print self.pozycja
-        self.pozycja = QListWidgetItem(self.tytul.text(),self.listaPrzyp)
-        return self.pozycja
+
+        # return self.pozycja
 
     # def zebTyt(self):
         # watek.tytul = self.tytul.text()
@@ -110,15 +110,18 @@ class Ui_PrzypominaczI(object):
     def startWatek(self):
 
         index = len(self.listaWatki)
+        index2 = len(self.listaTytuly)
         watek = Watek(index)
 
+        self.pozycja = QListWidgetItem(self.tytul.text(),self.listaPrzyp)
         watek.pobranaData = self.kalendarz.selectedDate().toString("yyyy-MM-dd")
         watek.pobranaGodzina = self.godzina.time().toString("hh:mm")
         watek.start()
         self.listaWatki.append(watek)
-        watek.sygnal.connect(ui.pozycjaTytul)
-        self.listaTytuly.append(self.pozycja)
+        # watek.sygnal.connect(ui.pozycjaTytul)
+        # self.listaTytuly.append(self.pozycja)
         watek.sygnal.connect(ui.okienko)
+        print index2
 
         # watek.sygnal2.connect(ui.zebTyt)
         # watek.sygnal2.connect(ui.pozycjaTytul)
@@ -157,7 +160,7 @@ def silnik(pobranaData,pobranaGodzina):
 
         dataKomputera = QDateTime.currentDateTime().toString("yyyy-MM-dd hh:mm")
         dataKalendarza = pobranaData + " " + pobranaGodzina
-        print dataKalendarza + " " + dataKomputera
+        # print dataKalendarza + " " + dataKomputera
 
         if dataKomputera == dataKalendarza:
 
