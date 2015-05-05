@@ -117,7 +117,7 @@ class Ui_PrzypominaczI(object):
         watek.pobranaData = self.kalendarz.selectedDate().toString("yyyy-MM-dd")
         watek.pobranaGodzina = self.godzina.time().toString("hh:mm")
         watek.start()
-        # self.listaWatki.append(watek)
+        self.listaWatki.append(watek)
         # watek.sygnal.connect(ui.pozycjaTytul)
         # self.listaTytuly.append(self.pozycja)
         watek.sygnal.connect(ui.okienko)
