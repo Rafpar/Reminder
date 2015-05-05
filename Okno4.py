@@ -152,7 +152,7 @@ class Watek(QThread):
 
         silnik(self.pobranaData,self.pobranaGodzina)
         self.sygnal.emit()
-
+# hhhhhhhhhhhhhhhh
 
 def silnik(pobranaData,pobranaGodzina):
 
