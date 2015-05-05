@@ -110,18 +110,18 @@ class Ui_PrzypominaczI(object):
     def startWatek(self):
 
         index = len(self.listaWatki)
-        index2 = len(self.listaTytuly)
+        # index2 = len(self.listaTytuly)
         watek = Watek(index)
 
         self.pozycja = QListWidgetItem(self.tytul.text(),self.listaPrzyp)
         watek.pobranaData = self.kalendarz.selectedDate().toString("yyyy-MM-dd")
         watek.pobranaGodzina = self.godzina.time().toString("hh:mm")
         watek.start()
-        self.listaWatki.append(watek)
+        # self.listaWatki.append(watek)
         # watek.sygnal.connect(ui.pozycjaTytul)
         # self.listaTytuly.append(self.pozycja)
         watek.sygnal.connect(ui.okienko)
-        print index2
+
 
         # watek.sygnal2.connect(ui.zebTyt)
         # watek.sygnal2.connect(ui.pozycjaTytul)
